@@ -1,0 +1,22 @@
+[package]
+name = "chip-8-core"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+std = ["alloc"]
+alloc = []
+
+[dependencies]
+rand_core = { workspace = true }
+
+[dependencies.bytemuck]
+version = "1.25.0"
+features = [
+    "min_const_generics",
+    "const_zeroed",
+    "derive",
+    "extern_crate_alloc",
+    "must_cast_extra",
+    "zeroable_maybe_uninit"
+]
