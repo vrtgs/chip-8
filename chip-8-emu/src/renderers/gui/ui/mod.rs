@@ -70,7 +70,7 @@ impl<'a, Message> canvas::Program<Message> for Chip8Canvas<'a> {
         frame.fill_rectangle(Point::ORIGIN, bounds.size(), self.border);
 
         // I use integer scale only, so the framebuffer stays crisp.
-        // otherwise it gets blurry and starts looking not so chip-8 like
+        // otherwise it gets blurry and starts looking not so chip-8-emu like
 
         let pixel = (bounds.width / src_w)
             .min(bounds.height / src_h)

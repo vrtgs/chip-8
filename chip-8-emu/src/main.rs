@@ -68,11 +68,11 @@ pub struct Cli {
     #[arg(long, default_value_t = 24)]
     pub fps: u32,
 
-    /// Foreground color as hex, e.g. FFFFFF
+    /// Foreground color as hex, e.g. C8C8C8
     #[arg(long, default_value = "FFFFFF")]
     pub fg: Rgb,
 
-    /// Background color as hex, e.g. 000000
+    /// Background color as hex, e.g. 050505
     #[arg(long, default_value = "000000")]
     pub bg: Rgb,
 

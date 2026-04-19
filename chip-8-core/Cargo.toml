@@ -2,6 +2,8 @@
 name = "chip-8-core"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+authors = ['vrtgs']
 
 [features]
 std = ["alloc"]

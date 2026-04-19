@@ -489,7 +489,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "chip-8"
+name = "chip-8-core"
+version = "0.1.0"
+dependencies = [
+ "bytemuck",
+ "rand_core",
+]
+
+[[package]]
+name = "chip-8-emu"
 version = "0.1.0"
 dependencies = [
  "chip-8-core",
@@ -500,14 +508,6 @@ dependencies = [
  "iced",
  "rand",
  "thiserror 2.0.18",
-]
-
-[[package]]
-name = "chip-8-core"
-version = "0.1.0"
-dependencies = [
- "bytemuck",
- "rand_core",
 ]
 
 [[package]]

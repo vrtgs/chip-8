@@ -25,6 +25,12 @@ impl Display {
         &self.0
     }
 
+    /// the board is laid out such that each u64 is a row
+    /// and each row, the leftmost pixel is the MSB
+    pub fn as_board_mut(&mut self) -> &mut [u64; 32] {
+        &mut self.0
+    }
+
     pub fn get(&self, x: u8, y: u8) -> bool {
         let row = self.0[usize::from(y % Self::VIDEO_HEIGHT)];
         ((row.wrapping_shl(u32::from(x))) & const { 1_u64 << (64-1) }) != 0

@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["chip-8-core", "chip-8"]
+members = ["chip-8-core", "chip-8-emu"]
 
 [workspace.dependencies]
 chip-8-core = { version = "0.1.0", path = "./chip-8-core" }

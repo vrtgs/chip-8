@@ -3,12 +3,6 @@ use bytemuck::Zeroable;
 
 pub type Seed = [u32; 4];
 
-type State = Seed;
-
-
-#[derive(Zeroable, Clone)]
-pub(crate) struct SimpleRng(State);
-
 pub trait Seeder {
     fn seed(self, seed: &mut Seed);
 }
@@ -18,6 +12,11 @@ impl<R: rand_core::Rng> Seeder for R {
         self.fill_bytes(bytemuck::bytes_of_mut::<Seed>(seed))
     }
 }
+
+type State = Seed;
+
+#[derive(Zeroable, Clone)]
+pub(crate) struct SimpleRng(State);
 
 impl SimpleRng {
     pub fn reseed(&mut self, seeder: impl Seeder) {
