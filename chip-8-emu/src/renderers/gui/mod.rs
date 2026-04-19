@@ -9,7 +9,7 @@ mod ui;
 
 #[derive(Clone)]
 enum GuiCommand {
-    Render(Display),
+    Render(Box<Display>),
     Fault(Fault),
     Quit,
 }
@@ -79,7 +79,7 @@ impl Renderer for GuiRenderer {
     }
 
     fn submit_render(&mut self, display: &Display) -> eyre::Result<()> {
-        self.tx.send(GuiCommand::Render(display.clone()))?;
+        self.tx.send(GuiCommand::Render(Box::new(display.clone())))?;
         Ok(())
     }
 

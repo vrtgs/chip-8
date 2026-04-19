@@ -105,6 +105,12 @@ impl InputIndex {
 #[derive(Clone, Eq, PartialEq)]
 pub struct InputState(u16);
 
+impl Default for InputState {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl InputState {
     pub const fn new() -> Self {
         Self(0)

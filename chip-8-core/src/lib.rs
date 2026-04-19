@@ -701,11 +701,7 @@ impl InnerEmu {
         let memory = self.mem.as_bytes_mut();
         let rom_buffer = &mut memory[Memory::ROM_START.get()..];
 
-        let res = rom_loader(rom_buffer);
-
-        if res.is_err() {
-            return res
-        }
+        let res = rom_loader(rom_buffer)?;
 
         let fontset_start = Memory::FONTSET_START_ADDRESS.get();
         memory[fontset_start..(fontset_start + FONTSET_SIZE)].copy_from_slice(&FONTSET);
@@ -714,7 +710,7 @@ impl InnerEmu {
         self.rng.reseed(seeder);
         self.display.clear();
 
-        res
+        Ok(res)
     }
 }
 

@@ -20,6 +20,10 @@ enum Message {
     Quit,
 }
 
+#[allow(
+    clippy::large_enum_variant,
+    reason = "99.999% of the time, the render state is set to Display"
+)]
 pub enum GuiRenderState {
     Display(Display),
     Fault(Fault)
@@ -339,7 +343,7 @@ impl GuiApp {
         match message {
             Message::Command(GuiCommand::Quit) => return iced::exit(),
             Message::Command(GuiCommand::Render(display)) => {
-                self.render_state = GuiRenderState::Display(display)
+                self.render_state = GuiRenderState::Display(*display)
             }
             Message::Command(GuiCommand::Fault(fault)) => {
                 self.render_state = GuiRenderState::Fault(fault)

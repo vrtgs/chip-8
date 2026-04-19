@@ -261,10 +261,10 @@ impl Renderer for TerminalRenderer {
                 queue!(self.stdout, MoveTo(origin_x + start, origin_y + cell_y))?;
 
                 for draw_dx in start..end {
-                    let top_color = sample(&display, draw_dx, top_dy);
+                    let top_color = sample(display, draw_dx, top_dy);
 
                     if bottom_dy < out_h {
-                        let bottom_color = sample(&display, draw_dx, bottom_dy);
+                        let bottom_color = sample(display, draw_dx, bottom_dy);
                         queue!(
                             self.stdout,
                             SetForegroundColor(top_color),
@@ -395,10 +395,9 @@ impl Renderer for TerminalRenderer {
         loop {
             match crossterm::event::read()? {
                 crossterm::event::Event::Key(key) => {
-                    if key.modifiers == KeyModifiers::CONTROL {
-                        if let Some('C' | 'c' | 'Q' | 'q') = key.code.as_char() {
-                            return Ok(PollEventActionRaw::Quit)
-                        }
+                    if key.modifiers == KeyModifiers::CONTROL
+                        && let Some('C' | 'c' | 'Q' | 'q') = key.code.as_char() {
+                        return Ok(PollEventActionRaw::Quit)
                     }
 
                     if let Some(idx) = self.map_key(key.code) {

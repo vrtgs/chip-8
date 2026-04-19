@@ -7,6 +7,12 @@ use crate::niche_opt::Nibble;
 #[repr(transparent)]
 pub struct Display([u64; 32]);
 
+impl Default for Display {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Display {
     pub const VIDEO_WIDTH: u8 = 64;
     pub const VIDEO_HEIGHT: u8 = 32;
@@ -51,9 +57,6 @@ impl Display {
         let mut collisions: u64 = 0;
 
         let screen = &mut self.0;
-
-        let y = y;
-        let height = height;
 
         let rows_to_end = Self::VIDEO_HEIGHT - y;
 

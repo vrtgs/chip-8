@@ -113,7 +113,7 @@ impl TimerState {
         };
 
         *self = Self::Paused {
-            was_waiting_on_input: matches!(next_cpu_cycle, None),
+            was_waiting_on_input: next_cpu_cycle.is_none(),
             clock_resume_offset: offset
         }
     }
@@ -362,7 +362,7 @@ fn main() -> eyre::Result<()> {
                     continue
                 },
                 PollEventAction::Reload => {
-                    emu.read_rom(std::fs::File::open(cli.rom.as_path())?, &mut rand::rng())?;
+                    emu.read_rom(std::fs::File::open(cli.rom.as_path())?, rand::rng())?;
                     renderer.force_needs_redraw();
                     timers = EmuTimers::new(
                         /* start_paused */ false,
